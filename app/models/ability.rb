@@ -4,10 +4,19 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Event, public: true
+    can :read, Event
 
     if user.present?
-      puts "hay que completar esto con lo que está en la documentación: https://github.com/CanCanCommunity/cancancan"
+
+      if user.admin?
+        can :read, :all
+        can :manage, :all
+      else
+        can :read, Place, Ticket
+        can :read, User, id: user.id
+        can :read, UserTicket, user_id: user.id
+        can :create, UserTicket, user_id: user.id
+      end
     end
     # Define abilities for the passed in user here. For example:
     #

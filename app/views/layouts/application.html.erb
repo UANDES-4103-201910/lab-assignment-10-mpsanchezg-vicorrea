@@ -12,13 +12,19 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
     <% if user_signed_in? %>
       <div class="nav-item">
-        <%= User.find(session["warden.user.user.key"][0][0]).name %>
+        <%= current_user.name %>
+        |
+        Admin: <%= current_user.admin? %>
       </div>
     <% end %>
     <div class="nav-item">
       <form class="form-inline">
-        <button><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %></button>
-        <button><%= link_to "Log out", destroy_user_session_path, method: :delete %></button>
+        <% if user_signed_in? %>
+          <button><%= link_to 'Show', current_user %> my profile</button>
+          <button><%= link_to "Log out", destroy_user_session_path, method: :delete %></button>
+        <% else %>
+          <button><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %></button>
+        <% end %>
       </form>
     </div>
   </nav>
