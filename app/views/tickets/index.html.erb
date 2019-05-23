@@ -1,25 +1,32 @@
-<p id="notice"><%= notice %></p>
+<% if can? :read, @ticket %>
+  <p id="notice"><%= notice %></p>
 
-<h1>Tickets</h1>
+  <h1>Tickets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tickets.each do |ticket| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to 'Show', ticket %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @tickets.each do |ticket| %>
+        <tr>
+          <td><%= link_to 'Show', ticket %></td>
+          <% if can? :manage, @ticket %>
+            <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+            <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+          <td><%= link_to 'Buy', ticket %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Ticket', new_ticket_path %>
+  <br>
+  <%= link_to 'New Ticket', new_ticket_path %>
+<% else %>
+  <b>Error! </b>You don't have permissions to see the tickets. Please,
+  <a href="../sign_in">sign in</a> or <a href="../users/sign_up">sign up</a>
+<% end %>
