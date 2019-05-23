@@ -20,4 +20,8 @@ class Event < ApplicationRecord
     end
   end
 
+  def in_which_place
+    place = Place.find(place_id)
+  end
+
 end

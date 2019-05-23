@@ -3,6 +3,7 @@
   <p><%= @event.name %></p>
   <p><%= @event.description %></p>
   <p><%= @event.start_date %></p>
+  <p><%= @event.in_which_place.name %></p>
   <% if can? :manage, @event %>
     <%= link_to 'Edit', edit_event_path(@event) %> |
     <%= link_to 'Back', events_path %>
