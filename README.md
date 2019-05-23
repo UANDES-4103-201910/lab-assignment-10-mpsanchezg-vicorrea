@@ -22,4 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+# Vicente Correa - Maria Pia Sanchez
 # lab4-base
