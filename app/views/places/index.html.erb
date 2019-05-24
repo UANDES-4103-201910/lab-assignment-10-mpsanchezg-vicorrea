@@ -1,4 +1,4 @@
-<% if can? :manage, @places %>
+<% if user_signed_in? %>
   <p id="notice"><%= notice %></p>
 
   <h1>Places</h1>
@@ -19,16 +19,19 @@
           <td><%= place.address %></td>
           <td><%= place.capacity %></td>
           <td><%= link_to 'Show', place %></td>
-          <td><%= link_to 'Edit', edit_place_path(place) %></td>
-          <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if can? :manage, @place %>
+            <td><%= link_to 'Edit', edit_place_path(place) %></td>
+            <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
 
   <br>
-
-  <%= link_to 'New Place', new_place_path %>
+  <% if can? :manage, @place %>
+    <%= link_to 'New Place', new_place_path %>
+  <% end %>
 <% else %>
   <b>Error</b>, you do not have permission to access here
 <% end %>

@@ -19,9 +19,4 @@ class Event < ApplicationRecord
       errors.add(:place, "Can't have 2 events at the same place and time")
     end
   end
-
-  def in_which_place
-    place = Place.find(place_id)
-  end
-
 end

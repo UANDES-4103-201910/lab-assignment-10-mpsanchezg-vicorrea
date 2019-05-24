@@ -12,6 +12,9 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
     <%= link_to "View events", events_path %>
     <% if user_signed_in? %>
+      <%= link_to "View places", places_path %>
+    <% end %>
+    <% if user_signed_in? %>
       <div class="nav-item">
         <%= current_user.name %>
         |

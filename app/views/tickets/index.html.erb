@@ -12,7 +12,7 @@
   <tbody>
     <% @tickets.each do |ticket| %>
       <tr>
-        <% if can? :read, @ticket %>
+        <% if can? :read, Ticket %>
           <td><%=  ticket.description %> </td>
           <td><%=  ticket.price %> </td>
           <td><%=  ticket.event.name %> </td>
