@@ -1,32 +1,39 @@
-<% if can? :read, @ticket %>
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
   <h1>Tickets</h1>
 
   <table>
-    <thead>
-      <tr>
-        <th colspan="3"></th>
+  <thead>
+  <tr>
+  <th colspan="3"></th>
       </tr>
     </thead>
 
-    <tbody>
-      <% @tickets.each do |ticket| %>
-        <tr>
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <% if can? :read, @ticket %>
+          <td><%=  ticket.description %> </td>
+          <td><%=  ticket.price %> </td>
+          <td><%=  ticket.event.name %> </td>
           <td><%= link_to 'Show', ticket %></td>
-          <% if can? :manage, @ticket %>
-            <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-            <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-          <td><%= link_to 'Buy', ticket %></td>
-        </tr>
-      <% end %>
-    </tbody>
+        <% end %>
+        <% if can? :manage, @ticket %>
+          <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+          <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <% if can? :read, @ticket %>
+          <td><%= link_to 'Buy', new_user_tickets_path(ticket) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
   </table>
 
   <br>
-  <%= link_to 'New Ticket', new_ticket_path %>
+<% if can? :manage, @ticket %>
+    <%= link_to 'New Ticket', new_ticket_path %>
 <% else %>
-  <b>Error! </b>You don't have permissions to see the tickets. Please,
+  <b>Error! </b>You don't have permissions to see the tickets. Please
   <a href="../sign_in">sign in</a> or <a href="../users/sign_up">sign up</a>
 <% end %>
