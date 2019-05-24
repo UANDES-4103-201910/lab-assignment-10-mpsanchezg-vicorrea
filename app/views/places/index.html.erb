@@ -6,9 +6,6 @@
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Capacity</th>
       </tr>
     </thead>
 
@@ -16,8 +13,6 @@
       <% @places.each do |place| %>
         <tr>
           <td><%= place.name %></td>
-          <td><%= place.address %></td>
-          <td><%= place.capacity %></td>
           <td><%= link_to 'Show', place %></td>
           <% if can? :manage, @place %>
             <td><%= link_to 'Edit', edit_place_path(place) %></td>
@@ -33,5 +28,6 @@
     <%= link_to 'New Place', new_place_path %>
   <% end %>
 <% else %>
-  <b>Error</b>, you do not have permission to access here
+  <b>Error! </b>You don't have permissions to see the places. Please
+  <a href="../sign_in">sign in</a> or <a href="../users/sign_up">sign up</a>
 <% end %>

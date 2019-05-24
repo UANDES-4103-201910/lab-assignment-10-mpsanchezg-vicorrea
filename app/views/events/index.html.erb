@@ -5,10 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Start date</th>
-      <th>Place</th>
     </tr>
   </thead>
 
@@ -16,9 +12,6 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.name %></td>
-        <td><%= event.description %></td>
-        <td><%= event.start_date %></td>
-        <td><%= event.place.name %></td>
         <td><%= link_to 'Show', event %></td>
         <% if can? :manage, @event %>
           <td><%= link_to 'Edit', edit_event_path(event) %></td>

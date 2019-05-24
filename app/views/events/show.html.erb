@@ -1,13 +1,13 @@
 <% if can? :read, @event %>
   <p id="notice"><%= notice %></p>
-  <p><%= @event.name %></p>
-  <p><%= @event.description %></p>
-  <p><%= @event.start_date %></p>
-  <p><%= @event.in_which_place.name %></p>
+  <h1><%= @event.name %></h1>
+  <h4><%= @event.description %></h4>
+  <h2>Start date: <%= @event.start_date %></h2>
+  <h2><%= @event.place.name %></h2>
   <% if can? :manage, @event %>
     <%= link_to 'Edit', edit_event_path(@event) %> |
-    <%= link_to 'Back', events_path %>
   <% end %>
+  <%= link_to 'Back', events_path %>
 <% else %>
   <b>Error</b>, you do not have permission to access here
 <% end %>

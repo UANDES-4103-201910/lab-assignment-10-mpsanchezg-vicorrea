@@ -13,6 +13,10 @@
     <%= link_to "View events", events_path %>
     <% if user_signed_in? %>
       <%= link_to "View places", places_path %>
+      <%= link_to "View tickets", tickets_path %>
+      <% if current_user.admin? %>
+        <%= link_to "View users", users_path %>
+      <% end %>
     <% end %>
     <% if user_signed_in? %>
       <div class="nav-item">

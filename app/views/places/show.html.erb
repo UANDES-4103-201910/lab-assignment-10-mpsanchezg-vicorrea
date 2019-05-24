@@ -1,4 +1,13 @@
-<p id="notice"><%= notice %></p>
+<% if user_signed_in? %>
+  <p id="notice"><%= notice %></p>
+  <h1><%= @place.name %></h1>
+  <h2><%= @place.address %></h2>
+  <h2>Capacity: <%= @place.capacity %></h2>
 
-<%= link_to 'Edit', edit_place_path(@place) %> |
-<%= link_to 'Back', places_path %>
+  <% if can? :manage, @place %>
+    <%= link_to 'Edit', edit_place_path(@place) %> |
+  <% end %>
+  <%= link_to 'Back', places_path %>
+<% else %>
+  <b>Error</b>, you do not have permission to access here
+<% end %>
