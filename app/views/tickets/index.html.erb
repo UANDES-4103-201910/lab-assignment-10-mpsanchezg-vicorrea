@@ -22,7 +22,7 @@
           <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
           <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-        <td><%= link_to 'Buy', new_user_ticket_path(ticket) %></td>
+        <td><%= link_to 'Buy', new_user_ticket_path(ticket, @user) %></td>
       </tr>
     <% end %>
   </tbody>

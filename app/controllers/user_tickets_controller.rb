@@ -69,6 +69,6 @@ class UserTicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_ticket_params
-      params.fetch(:user_ticket, {})
+      params.require(:user_ticket).permit(:user_id, :ticket_id, :paid)
     end
 end
